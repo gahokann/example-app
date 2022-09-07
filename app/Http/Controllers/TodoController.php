@@ -39,10 +39,10 @@ class TodoController extends Controller
         $dev = Developer::all();
         $s = $request->search;
 
-        $todos = Todo::join('developers', 'developers.id', '=', 'todos.devID')
-                            ->where('todos.title', 'LIKE', '%'.$s.'%')
-                            ->orWhere('developers.title,', 'LIKE', '%'.$s.'%')->get();
-        dd($todos);
+       $todos = Todo::join('developers', 'developers.id', '=', 'todos.devID')
+                            ->where('title', 'LIKE',  '%'.$s.'%')
+                            ->orWhere('name', 'LIKE',  '%'.$s.'%')->get();
+        // dd($todos);
         // $todos = Todo::where('title', 'LIKE', "%{$s}%")->orderBy('title')->paginate(10);
         return view('todos',['todos'=>$todos], ['dev' => $dev]);
     }
