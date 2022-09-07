@@ -48,7 +48,7 @@ class DeveloperController extends Controller
         }
 
         Developer::create([
-            'title'=>$request->get('title')
+            'name'=>$request->get('title')
         ]);
 
         return redirect()->route('developer.index')->with('success', 'Inserted');
@@ -71,7 +71,7 @@ class DeveloperController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
         //
         $dev = Developer::where('id', $id)->first();
@@ -98,7 +98,7 @@ class DeveloperController extends Controller
         }
 
         $todo=Developer::where('id',$id)->first();
-        $todo->title=$request->get('title');
+        $todo->name=$request->get('title');
         $todo->save();
 
         return redirect()->route('developer.index')->with('success', 'Updated Todo');

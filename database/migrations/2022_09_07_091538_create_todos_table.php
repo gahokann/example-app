@@ -17,6 +17,7 @@ class CreateTodosTable extends Migration
             $table->id();
             $table->longText('title');
             $table->boolean('is_completed')->default(0);
+            $table->integer("devID")->nullable();
             $table->timestamps();
         });
     }
